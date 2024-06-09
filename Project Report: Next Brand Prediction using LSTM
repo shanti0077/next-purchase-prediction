@@ -8,6 +8,7 @@ Going through the app, i understood that in the big brandz dealz header, there a
 So this project can be used in making a new widget which can have brands that user would like to get dealz from based on users previous history.
 
 2. Data Preparation
+
 2.1 Dataset
 
 The dataset consists of transactions from an e-commerce platform, including customer IDs, brand names, and transaction dates. The dataset is prepared using random function and doing random sampling of transactions by me. 
@@ -21,7 +22,9 @@ Data Cleaning: Formed 3 columns namely customer id , brand and txn dates. Create
 Encoding: Converted brand names to numerical labels using label encoding.
 Sequencing: Created sequences of transactions for each customer, with each sequence containing up to n previous transactions.
 Padding: Ensured all sequences were of equal length using padding.
+
 3. Model Architecture
+
 3.1 Model Selection
 
 We selected an LSTM network due to its ability to handle sequential data and capture temporal dependencies.
@@ -33,6 +36,7 @@ The model architecture includes the following layers:
 Embedding Layer: Converts the input sequence of brand IDs into dense vectors.
 LSTM Layer: Processes the embedded vectors and captures sequential dependencies.
 Dense Layer: Maps the output of the LSTM layer to a probability distribution over the possible brands.
+
 3.3 Hyperparameters
 
 Embedding Dimension: 50
@@ -41,7 +45,9 @@ Batch Size: 64
 Epochs: 10
 Optimizer: Adam
 Loss Function: Categorical Cross-Entropy
+
 4. Evaluation Metrics
+
 4.1 Precision
 
 Measures the accuracy of the positive predictions. It is calculated as:
@@ -63,6 +69,7 @@ The harmonic mean of precision and recall. It is calculated as:
 Measures how often the actual next brand is among the top N predicted brands.
 
 5. Results
+
 The model was evaluated on a test set, and the following metrics were obtained:
 
 Precision: 0.010211932550116815
@@ -70,6 +77,7 @@ Recall: 0.01240272373540856
 F1 Score: 0.008605248175606817
 
 6. Insights and Assumptions
+
 6.1 Insights
 
 Diversity - After manually checking results for few customers, it is observed that the results were diverse and most of the brands were covered in results.
@@ -80,5 +88,6 @@ Data Consistency: Assumed that the random function may have given right txn sequ
 Model Generalization: Assumed the model will give good results with default hyperparameters and less txns.
 
 7. Conclusion
+
 This project successfully implemented an LSTM-based approach to predict the next brands for customers in an e-commerce setting. Future work can explore more complex architectures, larger datasets, and additional features to further improve prediction accuracy and robustness. My observation is since the data was formulated randomly, the model did not work good and the precision is low. With real data, it could perform much better. Also hit rate will also be better. Also, the quantity of data was less, more data can help.Also i was working on google colab so computation resources i had was limited. Hyperparameter tuning could have helped. Also, using item features and customer features , with some different model approach can give us better results.
 
