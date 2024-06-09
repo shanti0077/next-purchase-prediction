@@ -1,0 +1,84 @@
+1. Introduction
+The objective of this project is to predict the next brands that each customer is likely to transact with in an e-commerce setting. By analyzing customers' transaction histories using an LSTM (Long Short-Term Memory) neural network, we aim to provide personalized brand recommendations. This report summarizes our approach, model architecture, evaluation metrics, and insights gained during the development process.
+
+2.Problem Statement Understanding
+For this i read the assignment carefully. There it was mentioned that predicts the next purchase a user might make based on their previous purchase history, so this clearly established that this problem is not cold start problem and we will have user txn data and using those txn data, for each user,we have to predict the next brands user will be interested to get deal from.
+
+Going through the app, i understood that in the big brandz dealz header, there are roughly 35 top brands and then further scrolling down, there are roughly 220 brands sorted in alphabatical order.
+So this project can be used in making a new widget which can have brands that user would like to get dealz from based on users previous history.
+
+2. Data Preparation
+2.1 Dataset
+
+The dataset consists of transactions from an e-commerce platform, including customer IDs, brand names, and transaction dates. The dataset is prepared using random function and doing random sampling of transactions by me. 
+This project i made for genzdealz app and they have roughly 252 brands for which they have deals.
+
+Finding a data online having 252 brands and transactions from them only didn't work for me. I didn't find some good data. So simulated the data on my own. 
+
+2.2 Preprocessing Steps
+
+Data Cleaning: Formed 3 columns namely customer id , brand and txn dates. Created 50000 txns for 5000 unique customers for roughly 100 brands.
+Encoding: Converted brand names to numerical labels using label encoding.
+Sequencing: Created sequences of transactions for each customer, with each sequence containing up to n previous transactions.
+Padding: Ensured all sequences were of equal length using padding.
+3. Model Architecture
+3.1 Model Selection
+
+We selected an LSTM network due to its ability to handle sequential data and capture temporal dependencies.
+
+3.2 Model Structure
+
+The model architecture includes the following layers:
+
+Embedding Layer: Converts the input sequence of brand IDs into dense vectors.
+LSTM Layer: Processes the embedded vectors and captures sequential dependencies.
+Dense Layer: Maps the output of the LSTM layer to a probability distribution over the possible brands.
+3.3 Hyperparameters
+
+Embedding Dimension: 50
+LSTM Units: 100
+Batch Size: 64
+Epochs: 10
+Optimizer: Adam
+Loss Function: Categorical Cross-Entropy
+4. Evaluation Metrics
+4.1 Precision
+
+Measures the accuracy of the positive predictions. It is calculated as:
+Precision = 𝑇𝑃/𝑇𝑃+𝐹𝑃
+
+4.2 Recall
+
+Measures the ability to identify all relevant instances. It is calculated as:
+Recall = 𝑇𝑃/𝑇𝑃+𝐹𝑁
+
+4.3 F1 Score
+
+The harmonic mean of precision and recall. It is calculated as:
+𝐹1Score=2×Precision×Recall/Precision+Recall
+
+
+4.4 Hit Rate
+
+Measures how often the actual next brand is among the top N predicted brands.
+
+5. Results
+The model was evaluated on a test set, and the following metrics were obtained:
+
+Precision: 0.010211932550116815
+Recall: 0.01240272373540856
+F1 Score: 0.008605248175606817
+
+6. Insights and Assumptions
+6.1 Insights
+
+Diversity - After manually checking results for few customers, it is observed that the results were diverse and most of the brands were covered in results.
+
+6.2 Assumptions
+
+Data Consistency: Assumed that the random function may have given right txn sequence for customers in terms of brand transacted.
+Model Generalization: Assumed the model will give good results with default hyperparameters and less txns.
+
+7. Conclusion
+This project successfully implemented an LSTM-based approach to predict the next brands for customers in an e-commerce setting. Future work can explore more complex architectures, larger datasets, and additional features to further improve prediction accuracy and robustness. My observation is since the data was formulated randomly, the model did not work good and the precision is low. With real data, it could perform much better. Also hit rate will also be better. Also, the quantity of data was less, more data can help.Also i was working on google colab so computation resources i had was limited. Hyperparameter tuning could have helped. Also, using item features and customer features , with some different model approach can give us better results.
+
